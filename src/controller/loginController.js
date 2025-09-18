@@ -14,7 +14,7 @@ async function autenticar(req, res){
     
     if (jogador != null){
         req.session.autorizado = true
-        req.session.jogador = jogador
+        req.session.usuario = jogador
 
         if(jogador.admin){
             req.session.admin = true

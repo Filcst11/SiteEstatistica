@@ -18,4 +18,4 @@ const Partida = database.define('partida', {
     }
 });
 
-module.exports = Partida
+module.exports = Partida;

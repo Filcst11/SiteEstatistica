@@ -1,22 +1,30 @@
 const Jogador = require('../model/jogador')
+const Partida = require('../model/partida')
 
 function index(req, res){
     //parte de saber se é admin ou nn
     let admin = req.session.admin === true
-    let jogador = req.session.jogador ? true : false;
-
-
-    //parte para receber as informações das postagens
+    let jogador = req.session.usuario ? true : false;
     
-    Jogador.findAll({
-       
-    }).then((jogadors)=>{
-        res.render('index.html', {jogadors, jogador, admin})
-    }).catch((erro_recuperar)=>{
-        res.render('index.html', {erro_recuperar, jogador, admin})
-    })
+    
+    if (req.session.autorizado){
+        let nomeJogador = req.session.usuario.apelido
         
-    
+        Partida.count().then(qtdPartidas => {
+            //parte para receber as informações das postagens
+            Jogador.findAll({
+        
+            }).then((jogadors)=>{
+                res.render('index.html', {jogadors, jogador, admin, nomeJogador, qtdPartidas})
+            }).catch((erro_recuperar)=>{
+                res.render('index.html', {erro_recuperar, jogador, admin, nomeJogador, qtdPartidas})
+            })
+        })
+    }
+    else{
+        let erro_autenticacao = true
+        res.render('login.html', {erro_autenticacao})
+    }
 }
 
 function administrador(req, res){

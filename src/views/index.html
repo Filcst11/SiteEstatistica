@@ -16,7 +16,7 @@
                     <h1 class="me-3">Estatísticas da estatísticas</h1>
                 </a>
                 <div class="row align-middle">
-                    {{#usuario}}
+                    {{#jogador}}
                     {{#admin}}
                     <div class="col align-middle">
                         <a href="/gerenciarJogadores"><h4 style="color: black">Jogadores</h4></a>
@@ -26,12 +26,12 @@
                     </div>
                     {{/admin}}
                     <div class="col align-middle">
-                        <h4 style="color: black">{{nome_usuario}}</h4>
+                        <h4 style="color: black">{{nomeJogador}}</h4>
                     </div>
                     <div class="col align-middle">
                         <a href="/logout"><h4 style="color: black">Sair</h4></a>
                     </div>
-                    {{/usuario}}
+                    {{/jogador}}
                 </div> 
             </div>
         </nav>
@@ -59,9 +59,19 @@
                         </tbody>
                         {{/jogadors}}
                     </table>
-                    <h4 class="text-center">Total de partidas cadastradas: XXX</h4> <!--Validar esses XXX-->
+                    <h4 class="text-center">Total de partidas cadastradas: {{qtdPartidas}}</h4>
                 </div>    
             </div> 
-        </div>           
+        </div>
+        {{#admin}}
+        <div class="container" style="margin-top: 5%;">
+            <div class="row justify-content-center">
+                <div class="d-grid gap-2 d-md-block">
+                    <a href="/cadastrarUsuario"><button type="button" class="btn btn-outline-primary">Cadastrar jogador</button></a>
+                    <a href="/cadastrarPartida"><button type="button" class="btn btn-outline-primary">Criar nova partida</button></a>
+                </div>   
+            </div>
+        </div> 
+        {{/admin}}               
     </body>
 </html>

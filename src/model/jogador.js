@@ -45,7 +45,7 @@ const Jogador = database.define('jogador', {
     admin: {
         type: Sequelize.DataTypes.BOOLEAN,
         allowNull: false,
-        defaultValue: false
+        defaultValue: true
     } 
 })
 
